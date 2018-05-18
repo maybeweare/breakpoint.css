@@ -1,14 +1,17 @@
 var del = require('del');
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var notify = require("gulp-notify");
+var rename = require('gulp-rename');
+var notify = require('gulp-notify');
 var browserSync = require('browser-sync').create();
 
 gulp.task('sass', function () {
     return gulp.src('src/breakpoint.scss')
         .pipe(notify("Compiling SASS!"))
         .pipe(sass()) 
+        .pipe(gulp.dest('dist/'))
         .pipe(sass({ outputStyle: 'compressed' }))
+        .pipe(rename({ extname: '.min.css' }))
         .pipe(gulp.dest('dist/'))
         .pipe(browserSync.reload({
             stream: true

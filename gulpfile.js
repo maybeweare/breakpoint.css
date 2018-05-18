@@ -8,6 +8,7 @@ gulp.task('sass', function () {
     return gulp.src('src/breakpoint.scss')
         .pipe(notify("Compiling SASS!"))
         .pipe(sass()) 
+        .pipe(sass({ outputStyle: 'compressed' }))
         .pipe(gulp.dest('dist/'))
         .pipe(browserSync.reload({
             stream: true

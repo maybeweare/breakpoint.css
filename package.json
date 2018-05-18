@@ -1,0 +1,32 @@
+{
+  "name": "breakpoint",
+  "version": "1.0.0",
+  "description": "A breezy CSS Framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slant-website/breakpoint.css.git"
+  },
+  "keywords": [
+    "CSS"
+  ],
+  "author": "Slant",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/slant-website/breakpoint.css/issues"
+  },
+  "homepage": "https://github.com/slant-website/breakpoint.css#readme",
+  "dependencies": {
+    "npm": "^6.0.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.24.4",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-notify": "^3.2.0",
+    "gulp-sass": "^4.0.1"
+  }
+}

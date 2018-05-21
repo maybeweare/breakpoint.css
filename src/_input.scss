@@ -1,0 +1,127 @@
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+.input-group {
+    margin: 1em 0;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 300px;
+    height: 100%;
+    overflow: hidden;
+
+    &::after, 
+    &::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        border-bottom: 2px solid #222;
+    }
+
+    &::after {
+        margin-top: 1px;
+        border-bottom: 4px solid #51AFC1;
+        -webkit-transform: translate3d(-100%, 0, 0);
+	    transform: translate3d(-100%, 0, 0);
+        -webkit-transition: -webkit-transform 0.3s;
+        transition: transform 0.3s;
+    }
+
+    &:focus-within::after {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.input, .textarea, .select {
+    padding: 1em 0 0.25em;
+    font-size: 1em;
+    line-height: 1.5em;
+    height: 2em;
+    width: 100%;
+    border: none;
+    background: transparent;
+
+    &:focus {
+        outline: none;
+    }
+
+    &:focus ~ .label,
+    &.filled ~ .label {
+        font-weight: bold;
+        -webkit-transform: translate3d(-2.35em, -1.4em, 0) scale(0.75);
+        transform: translate3d(-2.35em, -1.4em, 0) scale(0.75);
+    }
+
+}
+
+.label {
+    position: absolute;
+    bottom: 0.5em;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
+}
+
+.textarea {
+    line-height: 1.5em;
+    height: 100%;
+    resize: none;
+
+    & ~ .label {
+        top: 1em;
+    }
+
+}
+
+.select {
+    -webkit-appearance: menulist-button;
+    -moz-appearance: menulist-button;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -webkit-padding-end: 0.5em 0;
+    -moz-padding-end: 0.5em 0;
+    -webkit-padding-start: 1em 0;
+    -moz-padding-start: 1em 0;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    font-size: 1em;
+    height: 52px;
+    width: 100%;
+
+    & ~ .label,
+    &:focus ~ .label {
+        font-weight: bold;
+        -webkit-transform: translate3d(-2.35em, -1.6em, 0) scale(0.75);
+        transform: translate3d(-2.35em, -1.6em, 0) scale(0.75);
+    }
+}
+
+.select-wrapper::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 60%;
+    transform: translateY(-50%);
+    width: 0; 
+    height: 0; 
+    z-index: -1;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #222;
+}
+
+.input-helper {
+    padding: 0.25em;
+    margin: 0.25em 0;
+    font-size: 0.8em;
+    display: none;
+}

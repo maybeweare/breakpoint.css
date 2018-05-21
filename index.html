@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
+    <link rel="stylesheet" href="/dist/breakpoint.css">
+    <style>
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f1f4f9;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="input-group">
+            <div class="input-wrapper">
+                <input class="input" type="text" name="text" value="">
+                <label class="label" for="text">Name</label>
+            </div>
+            <div class="input-helper" style="display: none">
+                <small class="message">This is an error message</small>
+            </div>
+        </div>
+        <div class="input-group">
+            <div class="input-wrapper">
+                <input class="input" type="password" name="text" value="">
+                <label class="label" for="text">Password</label>
+            </div>
+            <div class="input-helper" style="display: none">
+                <small class="message">This is an error message</small>
+            </div>
+        </div>
+        <div class="input-group">
+            <div class="input-wrapper">
+                <textarea class="textarea" name="text" rows="4"></textarea>
+                <label class="label" for="text">Message</label>
+            </div>
+            <div class="input-helper" style="display: none">
+                <small class="message">This is an error message</small>
+            </div>
+        </div>
+        <div class="input-group">
+            <div class="input-wrapper">
+                <div class="select-wrapper">
+                    <select class="select" name="select">
+                        <option>Please select...</option>
+                        <option value="1">Bmw</option>
+                        <option value="2">Volvo</option>
+                        <option value="3">Mercedes</option>
+                        <option value="4">Audi</option>
+                        <option value="5">Alfa</option>
+                        <option value="6">Jeep</option>
+                    </select>
+                    <label class="label" for="select">Car</label>
+                </div>
+            </div>
+            <div class="input-helper" style="display: none">
+                <small class="message">This is an error message</small>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        (function() {
+            var inputs = document.getElementsByClassName("input");
+            var textareas = document.getElementsByClassName("textarea");
+            
+            toggleFillClass(inputs);
+            toggleFillClass(textareas);
+
+             function toggleFillClass(inputType) {
+                for (i = 0; i < inputType.length; i++) {
+                    inputType[i].addEventListener('change', function () {
+                        if (this.value != '' || this.value) {
+                            this.classList.add('filled');
+                        } else {
+                            this.classList.remove('filled');
+                        }
+                    });
+                }
+            }
+
+        })();
+    </script>
+</body>
+</html>

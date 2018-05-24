@@ -1,125 +1,262 @@
-.input-group {
-    margin: 1em 0;
+/**
+ * Outer wrapper class for all input fieldsets
+ */
+.field {
+    margin: 1.5em 0;
 }
 
-.input-wrapper {
-    position: relative;
-    width: 300px;
+/**
+ * Wrapper class for all input fields
+ */
+.input, 
+.textarea, 
+.select {
     height: 100%;
+    margin: 0;
+    position: relative;
     overflow: hidden;
+
+    /**
+    * Underline for input fields
+    */
+    &::after, 
+    &::before {
+        content: '';
+        width: 100%;
+        border-bottom: 2px solid #222;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+
+    /**
+    * After pseudo element for input underlines
+    * initially hidden outside by parent class
+    * overflow: hidden
+    * 1. Move the pseudo element to the left by 100%
+    * 2. Add animation effects to transform style
+    */
+    &::after {
+        margin-top: 1px;
+        border-bottom: 4px solid #51AFC1;
+        -webkit-transform: translate3d(-100%, 0, 0); /* 1 */
+	            transform: translate3d(-100%, 0, 0); /* 1 */
+        -webkit-transition: -webkit-transform 0.3s;  /* 2 */
+                transition:         transform 0.3s;  /* 2 */
+    }
+
+    /**
+    * After pseudo animated and comes into view
+    * when child input is focussed
+    */
+    &:focus-within::after {
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+    }
 }
 
-.label {
-    position: absolute;
-    top: 0.25em;
-    left: 0;
-    width: 100%;
-    font-weight: bold;
-    font-size: 0.75em;
-}
-
-.input, .textarea, .select {
-    padding: 1em 0 0.25em;
-    font-size: 1em;
-    line-height: 1.5em;
+/**
+* General styling for the various inputs.
+* The input is placed inside a wrapper with a class
+* of the same name.
+*/
+.input input, 
+.textarea textarea, 
+.select select {
     height: 2em;
     width: 100%;
     border: none;
+    padding: 0;
     background: transparent;
+    font-size: 1em;
+    line-height: 1.5em;
 
     &:focus {
         outline: none;
     }
 
-    &:focus ~ .input-line::after {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
 }
 
-.input-line {
-    &::after, 
-    &::before {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        border-bottom: 2px solid #222;
-    }
-
-    &::after {
-        margin-top: 1px;
-        border-bottom: 4px solid #51AFC1;
-        -webkit-transform: translate3d(-100%, 0, 0);
-	    transform: translate3d(-100%, 0, 0);
-        -webkit-transition: -webkit-transform 0.3s;
-        transition: transform 0.3s;
-    }
-}
-
-.textarea {
-    line-height: 1.5em;
+/**
+* Textarea overrides
+*/
+.textarea textarea {
     height: 100%;
+    line-height: 1.5em;
     resize: none;
-
-    & ~ .label {
-        top: 0em;
-    }
 }
 
-.select {
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -webkit-padding-end: 0.5em 0;
-    -moz-padding-end: 0.5em 0;
-    -webkit-padding-start: 1em 0;
-    -moz-padding-start: 1em 0;
-    font-size: 1em;
-    height: 52px;
+/**
+* Select input overrides. The padding is overriden.
+* Since the select box depends on each browser,
+* vendor prefixes are required to override some of the
+* styles.
+*/
+.select select {
+    height: 2em;
     width: 100%;
+    font-size: 1em;
+    -webkit-padding-end: 0.5em 0;
+       -moz-padding-end: 0.5em;
+    -webkit-padding-start: 0;
+       -moz-padding-start: 0;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
+    -webkit-appearance: button;
+       -moz-appearance: button;
+            appearance: button;
 
-    & ~ .label {
-        font-size: 0;
-        height: 100%;
-        width: 100%;
-        overflow: visible;
-        pointer-events: none;
-
-        &::after {
-            content: "";
-            position: absolute;
-            font-size: 0.75em;
-            right: 0;
-            top: 60%;
-            transform: translateY(-50%);
-            width: 0; 
-            height: 0; 
-            z-index: -1;
-            border-left: 6px solid transparent;
-            border-right: 6px solid transparent;
-            border-top: 6px solid #222;
-        }
+    /**
+    * Select option padding overrides
+    * The padding is zeroed.
+    */
+    option {
+        -webkit-padding-end: 0;
+           -moz-padding-end: 0;
+        -webkit-padding-start: 0;
+           -moz-padding-start: 0;
     }
 
+    /**
+    * Overrides for multi select boxes.
+    * Default select boxes are kept, the height
+    * is adjusted. The select color is updated.
+    * 1. In order to set the background of the multi select, 
+    *    a linear gradient was required
+    */
     &[multiple] {
         height: 100%;
         overflow: scroll;
 
-        & ~ .label {
-            display: none;
-        }
-
         &:focus option:checked {
-            background: #51AFC1 linear-gradient(0deg, #51AFC1 0%, #51AFC1 100%);
+            background: #51AFC1 linear-gradient(0deg, #51AFC1 0%, #51AFC1 100%); /* 1 */
         }
     }
 }
 
-.input-helper {
-    padding: 0.25em 0;
+/**
+* Basic styling for input field labels.
+*/
+.label {
+    width: 100%;
+    margin:0;
+    padding:0;
+    font-weight: bold;
+    font-size: 0.75em;
+}
+
+/**
+* Checkbox and radio button wrapper.
+* 1. Hide the input by setting the opacity to 0.
+*    The checkbox/radio will be overlay this element.
+*/
+.checkbox,
+.radio {
+    height: 100%;
+    width: 100%;
+    margin: 0.5em 0;
+    position: relative;
+    display: inline-block;
+    padding-left: 1.75em;
+    line-height: 1.25em;
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
+
+    input {
+        position: absolute;
+        opacity: 0; /* 1 */
+        cursor: pointer;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/**
+* Common stylings for radio inputs and checkboxes.
+*/
+.selector {
+    height: 1.25em;
+    width: 1.25em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #eee;
+}
+
+/**
+* Radio input overrides.
+*/
+.radio > .selector {
+    border-radius: 50%;
+}
+
+/**
+* Background styling of checked input.
+*/
+.checkbox input:checked ~ .selector,
+.radio input:checked ~ .selector {
+    background-color: #51AFC1;
+}
+
+/**
+* Common styles for a selected input.
+* Hidden by default.
+*/
+.selector:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/**
+* Display tick/radio for selected input.
+*/
+.checkbox input:checked ~ .selector:after,
+.radio input:checked ~ .selector:after {
+    display: block;
+}
+
+/**
+* Checkmark styling.
+*/
+.checkbox > .selector::after {
+    left: 35%;
+    top: 15%;
+    width: 30%;
+    height: 60%;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+       -moz-transform: rotate(45deg);
+            transform: rotate(45deg);
+}
+
+/**
+* Radio input styling.
+*/
+.radio > .selector::after {
+    width: 50%;
+    height: 50%;
+    top: 25%;
+    left: 25%;
+    border-radius: 50%;
+    background: white;
+}
+
+/**
+* Helper class for helper/error text in an
+* input field.
+*/
+.field .helper {
     margin: 0.25em 0;
+    padding: 0.25em 0;
+    text-align: right;
+    list-style: none;
+    color: tomato; // To be changed to red variable
     font-size: 0.8em;
 }

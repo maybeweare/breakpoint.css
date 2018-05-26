@@ -3,11 +3,13 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var rename = require('gulp-rename');
 var notify = require('gulp-notify');
+var plumber = require('gulp-plumber');
 var browserSync = require('browser-sync').create();
 
 gulp.task('sass', function () {
     return gulp.src('src/breakpoint.scss')
-        .pipe(notify("Compiling SASS!"))
+        .pipe(plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }))
+        .pipe(notify({ message: "Compiling <%= file.relative %>!!", wait: true}))
         .pipe(sass()) 
         .pipe(gulp.dest('dist/'))
         .pipe(sass({ outputStyle: 'compressed' }))

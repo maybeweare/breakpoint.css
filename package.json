@@ -20,12 +20,13 @@
   },
   "homepage": "https://github.com/slant-website/breakpoint.css#readme",
   "dependencies": {
-    "npm": "^6.0.1"
+    "npm": "^6.1.0"
   },
   "devDependencies": {
     "browser-sync": "^2.24.4",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
     "gulp-notify": "^3.2.0",
     "gulp-plumber": "^1.2.0",
     "gulp-rename": "^1.2.3",

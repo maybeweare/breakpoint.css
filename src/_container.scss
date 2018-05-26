@@ -1,0 +1,24 @@
+/* Mobile screens */
+.container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Tablet screens */
+@media screen and (min-width: 700px) and (max-width: 1000px) {
+    .container {
+        width: 90%;
+    }
+}
+
+/* Desktop screens */
+@media screen and (min-width: 1000px) {
+    .container {
+        width: 80%;
+    }
+}
+
+/* Full width/fluid class */
+.fluid {
+    width: 100%;
+}

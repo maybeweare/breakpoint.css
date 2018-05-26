@@ -10,21 +10,52 @@ $divisions: ('one' 1, 'two' 2 , 'three' 3, 'four' 4, 'five' 5, 'six' 6, 'seven' 
     grid-template-columns: repeat(12, [col] 1fr);
     grid-auto-rows: minmax(50px, auto);
     grid-gap: 1em;
-}
+    width: 100%;
 
-/* No gutter helper class */
-.gutter-none {
-    grid-gap: 0;
-}
+    /* No gutter helper class */
+    &.gutter-none {
+        grid-gap: 0;
+    }
 
-/* 1em gutter helper class */
-.gutter-one {
-    grid-gap: 1em;
-}
+    /* 1em gutter helper class */
+    &.gutter-one {
+        grid-gap: 1em;
+    }
 
-/* 2em gutter helper class */
-.gutter-two {
-    grid-gap: 2em;
+    /* 2em gutter helper class */
+    &.gutter-two {
+        grid-gap: 2em;
+    }
+
+    /* Vertically align all columns to the top */
+    &.top > .column{
+        align-items: flex-start;
+    }
+
+    /* Vertically align all columns to the center */
+    &.middle > .column {
+        align-items: center;
+    }
+
+    /* Vertically align all columns to the bottom */
+    &.bottom > .column {
+        align-items: flex-end; 
+    }
+
+    /* Horizontally align all columns to the left */
+    &.left > .column {
+        justify-content: flex-start;
+    }
+
+    /* Horizontally align all columns to the center */
+    &.center > .column {
+        justify-content: center;
+    }
+
+    /* Horizontally align all columns to the right */
+    &.bottom > .column {
+        justify-content: flex-end; 
+    }
 }
 
 /* Dynamic grid */
@@ -35,8 +66,36 @@ $divisions: ('one' 1, 'two' 2 , 'three' 3, 'four' 4, 'five' 5, 'six' 6, 'seven' 
 /* This will be redundant if we create a .flex utility class */
 .column {
     display: flex;
-    justify-content: center;
-    align-items: center; 
+
+    /* Vertically align single column to the top */
+    &.top {
+        align-items: flex-start;
+    }
+
+    /* Vertically align single column to the center */
+    &.middle {
+        align-items: center;
+    }
+
+    /* Vertically align single column to the bottom */
+    &.bottom {
+        align-items: flex-end; 
+    }
+
+    /* Horizontally align single column to the left */
+    &.left {
+        justify-content: flex-start;
+    }
+
+    /* Horizontally align single column to the center */
+    &.center {
+        justify-content: center;
+    }
+
+    /* Horizontally align single column to the right */
+    &.right {
+        justify-content: flex-end; 
+    }
 }
 
 /**
@@ -51,7 +110,7 @@ $divisions: ('one' 1, 'two' 2 , 'three' 3, 'four' 4, 'five' 5, 'six' 6, 'seven' 
  */
 @mixin column-divisions($prefix, $columns) {
     @each $i in $columns { /* 1 */
-        .#{$prefix}#{nth($i, 1)} {
+        .column.#{$prefix}#{nth($i, 1)} {
             grid-column-start: auto; /* 2 */
             grid-column-end: span nth($i, 2); /* 3 */
         }
@@ -69,15 +128,21 @@ $divisions: ('one' 1, 'two' 2 , 'three' 3, 'four' 4, 'five' 5, 'six' 6, 'seven' 
  */
 @mixin offset($prefix, $columns) {
     @each $i in $columns {
-        .#{$prefix}#{'offset-'}#{nth($i, 1)} {
-            grid-column-start: nth($i, 2);
+        .column.#{$prefix}#{'offset-'}#{nth($i, 1)} {
+            grid-column-start: nth($i, 2) + 1; /* 1 */
         }
     }
 }
 
-/* Mobile screens */
+/* Desktop screens */
 @include column-divisions('', $divisions);
 @include offset('', $divisions);
+
+/* Mobile screens */
+@media screen and (max-width: 700px) {
+    @include column-divisions('mobile-', $divisions);
+    @include offset('mobile-', $divisions);
+}
 
 /* Tablet screens */
 @media screen and (min-width: 700px) and (max-width: 1000px) {
@@ -85,9 +150,4 @@ $divisions: ('one' 1, 'two' 2 , 'three' 3, 'four' 4, 'five' 5, 'six' 6, 'seven' 
     @include offset('tablet-', $divisions);
 }
 
-/* Desktop screens */
-@media screen and (min-width: 1000px) {
-    @include column-divisions('desktop-', $divisions);
-    @include offset('desktop-', $divisions);
-}
 

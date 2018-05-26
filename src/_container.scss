@@ -1,21 +1,21 @@
-/* Mobile screens */
+/* Desktop screens */
 .container {
-    width: 100%;
-    margin: 0 auto;
+    width: 80%;
 }
 
 /* Tablet screens */
-@media screen and (min-width: 700px) and (max-width: 1000px) {
+@media screen and (min-width: $tablet) and (max-width: $desktop) {
     .container {
         width: 90%;
     }
 }
 
-/* Desktop screens */
-@media screen and (min-width: 1000px) {
+/* Mobile screens */
+@media screen and (max-width: $tablet) {
     .container {
-        width: 80%;
-    }
+        width: 100%;
+        margin: 0 auto;
+    } 
 }
 
 /* Full width/fluid class */

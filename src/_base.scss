@@ -1,0 +1,30 @@
+$body-font: -apple-system, BlinkMacSystemFont, 'helvetica neue', helvetica, ubuntu, roboto, noto, 'segoe ui', arial, sans-serif;
+$mono-font: 'roboto mono', Consolas, monaco, monospace;
+
+$primary-colour: #222;
+$secondary-colour: #fafafa;
+
+body {
+    font: normal 115% / 1.4 $body-font;
+    color: $primary-colour;
+    -webkit-font-smoothing: antialiased;
+            font-smoothing: antialiased; 
+}
+
+a {
+    color: $primary-colour;
+    outline: none;
+    text-decoration: none;
+  
+    &:focus, &:hover, &:active {
+      color: $secondary-colour;
+    }
+}
+
+// Breakpoints
+$mobile: 320px;
+$tablet: 768px;
+$desktop: 1024px;
+
+// Colours
+// TBD

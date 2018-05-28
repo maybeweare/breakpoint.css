@@ -4,6 +4,7 @@ var sass = require('gulp-sass');
 var rename = require('gulp-rename');
 var notify = require('gulp-notify');
 var plumber = require('gulp-plumber');
+var autoprefixer = require('gulp-autoprefixer');
 var browserSync = require('browser-sync').create();
 
 gulp.task('sass', function () {
@@ -11,6 +12,10 @@ gulp.task('sass', function () {
         .pipe(plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }))
         .pipe(notify({ message: "Compiling <%= file.relative %>!!", wait: true}))
         .pipe(sass()) 
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))
         .pipe(gulp.dest('dist/'))
         .pipe(sass({ outputStyle: 'compressed' }))
         .pipe(rename({ extname: '.min.css' }))

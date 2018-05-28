@@ -15,3 +15,18 @@ a {
       color: $secondary-colour;
     }
 }
+
+code {
+    font-size: 80%;
+    font-family: $mono-font;
+    background: $secondary-colour;
+    padding: .3em;
+    white-space: nowrap;
+}
+
+pre {
+    code {
+        display: block;
+        white-space: pre
+    }
+}

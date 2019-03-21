@@ -30,5 +30,30 @@
     }
 }
 
+@mixin padding($padding) {
+    @for $i from 1 through $padding {
+        .pt-#{$i} {
+            padding-top: #{$i}em
+        }
+
+        .pb-#{$i} {
+            padding-bottom: #{$i}em
+        }
+
+        .pl-#{$i} {
+            padding-left: #{$i}em
+        }
+
+        .pr-#{$i} {
+            padding-bottom: #{$i}em
+        }
+
+        .p-#{$i} {
+            padding: #{$i}em
+        }
+    }
+}
+
 /* Desktop screens */
 @include margin(12);
+@include padding(12);

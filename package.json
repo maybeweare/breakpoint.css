@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/slant-website/breakpoint.css#readme",
   "dependencies": {
-    "npm": "^6.13.4"
+    "npm": "^6.14.6"
   },
   "devDependencies": {
     "browser-sync": "^2.24.4",
